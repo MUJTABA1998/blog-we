@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main-container {
+  @apply w-full px-10 py-10 mx-auto md:px-20 max-w-7xl;
+}
+
+@font-face {
+  font-family: "Roboto Slab", serif;
+  src: url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap");
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap");
+}
+@font-face {
+  font-family: "Bevellier", sans-serif;
+  src: url("https://api.fontshare.com/v2/css?f[]=bevellier@500,600,700,400,900&display=swap");
+}
+
+body {
+  @apply font-primary;
+  @apply bg-white;
+}
+
+.file-input {
+  display: none;
+}
+.codex-editor__redactor {
+  @apply w-[650px] h-auto text-gray-800 placeholder:text-[18px] gap-y-7 placeholder:text-gray-500 font-main placeholder:capitalize placeholder:tracking-widest px-5 py-3 border-2 rounded-[7px] pb-3 border-gray-200;
+}
+
+.icon-image {
+  @apply text-[25px] text-gray-800;
+}
+
+.img-container {
+  @apply w-full h-[280px] flex items-center justify-center bg-gray-100 rounded-[7px];
+}
+
+.img-show {
+  @apply object-cover w-full h-full rounded-[7px];
+}
+.hide-label,
+.hide-icon {
+  display: none;
+}
+
+.blog-content > h1 {
+  @apply text-3xl font-extrabold tracking-wider text-gray-800 uppercase font-main;
+}
