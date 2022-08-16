@@ -6,9 +6,7 @@ import {
   ImFacebook2,
   ImLinkedin,
   ImShare2,
-  ImLink,
-  ImQuotesLeft,
-  ImQuotesRight,
+  ImLink
 } from "react-icons/im";
 
 const Blog = () => {
@@ -26,7 +24,7 @@ const Blog = () => {
     switch (content.type) {
       case "paragraph":
         return (
-          <p className="text-sm md:text-lg tracking-wider text-gray-500 font-main">
+          <p className="text-sm tracking-wider text-gray-500 md:text-lg font-main">
             {content.data.text}
           </p>
         );
@@ -66,7 +64,7 @@ const Blog = () => {
         return (
           <ul className="ml-5 list-disc">
             {content.data.items.map((item, index) => (
-              <li key={index} className="text-xs md:text-sm text-gray-500">
+              <li key={index} className="text-xs text-gray-500 md:text-sm">
                 {item}
               </li>
             ))}
@@ -80,21 +78,21 @@ const Blog = () => {
   return (
     <div className="main-container">
       {blog !== null ? (
-        <div className="flex flex-col gap-5 justify-start items-start">
-          <div className="flex justify-between w-full gap-6 items-center flex-wrap">
-            <div className="flex justify-start items-start gap-3">
+        <div className="flex flex-col items-start justify-start gap-5">
+          <div className="flex flex-wrap items-center justify-between w-full gap-6">
+            <div className="flex items-start justify-start gap-3">
               <div className="w-[70px] h-[70px] drop-shadow-sm">
                 <img
                   src={blog.profile}
                   alt="profile"
-                  className="w-full h-full rounded-full object-cover"
+                  className="object-cover w-full h-full rounded-full"
                 />
               </div>
-              <div className="flex flex-col justify-start items-start gap-2">
+              <div className="flex flex-col items-start justify-start gap-2">
                 <h4 className="self-start text-gray-700 text-[16px] capitalize mt-2 font-[700]">
                   {blog.writtenBy}
                 </h4>
-                <div className="flex justify-start items-start gap-3">
+                <div className="flex items-start justify-start gap-3">
                   <h5 className="text-xs text-gray-400">{blog.postedOn}</h5>
                   <h5 className="text-xs text-indigo-500">
                     {blog.follower} followers
@@ -102,7 +100,7 @@ const Blog = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-start ml-1  sm:ml-0 items-start gap-4">
+            <div className="flex items-start justify-start gap-4 ml-1 sm:ml-0">
               <Link to="/" className="text-gray-400">
                 <ImTwitter />
               </Link>
@@ -115,7 +113,7 @@ const Blog = () => {
               <Link to="/" className="text-gray-400">
                 <ImLink />
               </Link>
-              <Link to="/" className="text-gray-400 ml-3">
+              <Link to="/" className="ml-3 text-gray-400">
                 <ImShare2 />
               </Link>
             </div>
