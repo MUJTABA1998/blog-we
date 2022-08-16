@@ -1,63 +1,60 @@
 import React from "react";
-import { useGlobalContext } from "../AppContext";
+import {Link} from 'react-router-dom'
+import { data } from "../utillities/data";
 
 const AllBlogs = () => {
-  const { blogs } = useGlobalContext();
-  console.log(blogs);
+  
 
-  function getData(content) {
-    switch (content.type) {
-      case "paragraph":
-        return (
-          <p className="text-lg tracking-wider text-gray-500 font-main">
-            {content.data.text}
-          </p>
-        );
-      case "header":
-        return (
-          <h3 className="text-[22px] text-gray-800 uppercase font-main">
-            {content.data.text}
-          </h3>
-        );
-      case "image":
-        return (
-          <img
-            src={content.data.url}
-            alt={content.data.id}
-            className="object-cover rounded-[7px]"
-          />
-        );
-      case "list":
-        return (
-          <ol start="1" className="ml-5">
-            {content.data.items.map((item, index) => (
-              <li key={index} className="text-xs text-gray-500 font-main">
-                {index + 1 + ":"} {item}
-              </li>
-            ))}
-          </ol>
-        );
-      default:
-        break;
-    }
-  }
-
-  if (blogs.length === 0) {
+  if (data.length === 0) {
     return <h1 className="main-container">No Blog To Show</h1>;
   }
-  if (blogs) {
+  if (data) {
     return (
       <div className="main-container">
-        <div className="flex flex-col items-start w-full gap-10 jus-ftify-start ">
-          {blogs.map((blog) => (
-            <div key={blog.id} className="flex flex-col gap-5 blog-content">
-              <h1>{blog.title}</h1>
-              <div className="flex flex-col gap-3 blog-content-sub">
-                {blog.content.blocks.map((b, index) => (
-                  <div key={index}>{getData(b)}</div>
-                ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 place-items-start gap-14 py-10">
+          {data.map((blog, index) => (
+            <Link
+              className="flex flex-col-reverse md:flex-row justify-between items-start gap-3"
+              key={index}
+              to={`/blogs/${blog.id}`}
+            >
+              <div className="flex flex-col items-start justify-start gap-y-2">
+                <div className="flex justify-start items-center gap-5">
+                  <img
+                    src={blog.profile}
+                    alt={blog.id}
+                    className="w-14 h-14 rounded-full object-cover"
+                  />
+                  <h3 className="text-[14px] text-gray-700 font-[600] font-primary capitalize tracking-wider">
+                    {blog.writtenBy}
+                  </h3>
+                </div>
+                <h1 className="text-[20px] mt-3  text-gray-800 capitalize font-primary font-[900]">
+                  {blog.title}
+                </h1>
+                <div className="flex justify-center items-center gap-5">
+                  <h5 className="text-gray-400 text-xs">{blog.postedOn}</h5>
+                  <h5 className="text-xs  text-indigo-400">
+                    {blog.follower} followers
+                  </h5>
+                </div>
               </div>
-            </div>
+              <div className="self-center">
+                {blog.content.blocks.map((bl, index) => {
+                  if (bl.type === "image") {
+                    return (
+                      <img
+                        src={bl.data.url}
+                        alt={index}
+                        key={index}
+                        className="w-[300px] rounded-[3px] drop-shadow-sm"
+                      />
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -66,3 +63,4 @@ const AllBlogs = () => {
 };
 
 export default AllBlogs;
+

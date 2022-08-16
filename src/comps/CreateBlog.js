@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import EditorJs from "@natterstefan/react-editor-js";
 import { EDITOR_JS_TOOLS } from "../utillities/editor-constants";
 import { useGlobalContext } from "../AppContext";
@@ -8,6 +8,7 @@ let editordata = null;
 
 export const CreateBlog = () => {
   const { blogs, setBlogs } = useGlobalContext();
+  const editorRef = useRef();
 
   const [title, setTitle] = useState("");
 
@@ -15,6 +16,7 @@ export const CreateBlog = () => {
     try {
       const content = await editordata.save();
       if (content) {
+        console.log("Content.....\n", content);
         return content;
       }
     } catch (error) {
@@ -30,6 +32,10 @@ export const CreateBlog = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (editordata === null || title === "") {
+      alert("All Fields required");
+      return;
+    }
     let cont = await save();
     if (cont) {
       console.log("running........");
@@ -40,6 +46,8 @@ export const CreateBlog = () => {
       };
 
       setBlogs([...blogs, newBlog]);
+      setTitle("");
+      editordata.clear();
     } else {
       console.log("not runngin ...........");
     }
@@ -60,14 +68,14 @@ export const CreateBlog = () => {
             className="w-[650px] h-[70px] text-gray-500 border-2 border-gray-200 rounded-[7px] px-5  outline-none text-[18px] placeholder:text-[16px] placeholder:text-gray-500 font-main placeholder:capitalize "
           />
         </div>
-        <div className="">
+        <div className="" ref={editorRef}>
           <EditorJs
             placeholder="Start Write Your Blog"
             tools={EDITOR_JS_TOOLS}
             editorInstance={(instance) => {
               editordata = instance;
             }}
-            className="w-full h-auto pb-10 pl-6"
+            className="w-full  pb-10 pl-6"
           />
         </div>
         <div className="flex items-start justify-start w-full gap-6">

@@ -13,7 +13,8 @@ class SimpleImage {
     div.classList.add("img-container");
     const label = document.createElement("label");
     const icon = document.createElement("span");
-    icon.innerHTML = '<i class="fas fa-image-polaroid"></i>';
+    icon.innerHTML =
+      "<img src='./images/icons8-image-96.png' alt='icon' style={{width:'40px', height:'40px'}}/>";
     icon.classList.add("icon-image");
     label.appendChild(icon);
     const file = document.createElement("input");
