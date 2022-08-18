@@ -3,7 +3,7 @@ import EditorJs from "@natterstefan/react-editor-js";
 import { EDITOR_JS_TOOLS } from "../utillities/editor-constants";
 import { useGlobalContext } from "../AppContext";
 import { v4 as uid } from "uuid";
-import data from "../utillities/data";
+
 
 let editordata = null;
 

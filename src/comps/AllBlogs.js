@@ -1,16 +1,14 @@
 import React from "react";
-import {Link} from 'react-router-dom'
-import { data } from "../utillities/data";
+import { Link } from "react-router-dom";
 import { useGlobalContext } from "../AppContext";
 
 const AllBlogs = () => {
-  
-  const {blogs} = useGlobalContext()
+  const { blogs } = useGlobalContext();
 
-  if (data.length === 0) {
+  if (blogs.length === 0) {
     return <h1 className="main-container">No Blog To Show</h1>;
   }
-  if (data) {
+  if (blogs) {
     return (
       <div className="main-container">
         <div className="grid grid-cols-1 py-10 md:grid-cols-2 place-items-start gap-14">
@@ -65,4 +63,3 @@ const AllBlogs = () => {
 };
 
 export default AllBlogs;
-
