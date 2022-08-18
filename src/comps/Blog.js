@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { data } from "../utillities/data";
+import { useGlobalContext } from "../AppContext";
 
 import { useParams, Link } from "react-router-dom";
 import {
@@ -7,17 +7,18 @@ import {
   ImFacebook2,
   ImLinkedin,
   ImShare2,
-  ImLink
+  ImLink,
 } from "react-icons/im";
 
 const Blog = () => {
   const [blog, setBlog] = useState(null);
   const { id } = useParams();
+  const { blogs } = useGlobalContext();
 
   useEffect(() => {
-    const item = data.find((i) => i.id === id);
+    const item = blogs.find((i) => i.id === id);
     setBlog(item);
-  }, [setBlog, id]);
+  }, [setBlog, id, blogs]);
 
   console.log(blog);
 
