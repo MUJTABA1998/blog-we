@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { data } from "./utillities/data";
 
 const getBlogs = () => {
   const blogData = JSON.parse(localStorage.getItem("blogs"));
@@ -9,7 +10,7 @@ const getBlogs = () => {
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState(data);
   const [alert, setAlert] = useState({
     show: false,
     type: "",

@@ -3,6 +3,7 @@ import EditorJs from "@natterstefan/react-editor-js";
 import { EDITOR_JS_TOOLS } from "../utillities/editor-constants";
 import { useGlobalContext } from "../AppContext";
 import { v4 as uid } from "uuid";
+import data from "../utillities/data";
 
 let editordata = null;
 
@@ -41,10 +42,14 @@ export const CreateBlog = () => {
       console.log("running........");
       const newBlog = {
         id: uid(),
+        writtenBy: "robert roy britt",
+        postedOn: "12 May, 2022",
+        follower: 234,
+        profile:
+          "https://images.pexels.com/photos/39866/entrepreneur-startup-start-up-man-39866.jpeg?auto=compress&cs=tinysrgb&w=600",
         title,
         content: cont,
       };
-
       setBlogs([...blogs, newBlog]);
       setTitle("");
       editordata.clear();
@@ -75,7 +80,7 @@ export const CreateBlog = () => {
             editorInstance={(instance) => {
               editordata = instance;
             }}
-            className="w-full  pb-10 pl-6"
+            className="w-full pb-10 pl-6"
           />
         </div>
         <div className="flex items-start justify-start w-full gap-6">
