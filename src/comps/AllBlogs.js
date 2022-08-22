@@ -4,6 +4,7 @@ import { useGlobalContext } from "../AppContext";
 
 const AllBlogs = () => {
   const { blogs } = useGlobalContext();
+  console.log(blogs);
 
   if (blogs.length === 0) {
     return <h1 className="main-container">No Blog To Show</h1>;

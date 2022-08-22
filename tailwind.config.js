@@ -6,7 +6,7 @@ module.exports = {
       fontFamily: {
         primary: ["Roboto Slab", "serif"],
         secondary: ["Montserrat", "sans-serif"],
-        main: ["Bevellier", "sans-serif"],
+        main: ["Oswald", "sans-serif"],
       },
       colors: {
         primary: "#FFE14B",

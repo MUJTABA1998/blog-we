@@ -71,7 +71,7 @@ export const data = [
         },
         {
           id: "fRkkACFSHx",
-          type: "raw",
+          type: "code",
           data: {
             html: "npx create-react-app app-name\nnpm start\nnpm run build",
           },
@@ -168,7 +168,7 @@ export const data = [
         },
         {
           id: "fRkkACFSHx",
-          type: "raw",
+          type: "code",
           data: {
             html: "npx create-react-app app-name\nnpm start\nnpm run build",
           },

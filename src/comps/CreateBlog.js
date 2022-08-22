@@ -4,7 +4,6 @@ import { EDITOR_JS_TOOLS } from "../utillities/editor-constants";
 import { useGlobalContext } from "../AppContext";
 import { v4 as uid } from "uuid";
 
-
 let editordata = null;
 
 export const CreateBlog = () => {
@@ -60,32 +59,29 @@ export const CreateBlog = () => {
 
   return (
     <div className="main-container">
-      <div className="flex flex-col items-start justify-center w-full h-auto py-10 gap-7">
-        <h1 className="text-5xl font-extrabold tracking-wider text-gray-800 capitalize font-main">
-          Start writing your blog
-        </h1>
-        <div className="">
+      <div className="flex flex-col items-center justify-center w-full h-auto max-w-2xl gap-4 py-10">
+        <div className="w-full">
           <input
             type="text"
             placeholder="Blog title"
             value={title}
             onChange={handleChange}
-            className="w-[650px] h-[70px] text-gray-500 border-2 border-gray-200 rounded-[7px] px-5  outline-none text-[18px] placeholder:text-[16px] placeholder:text-gray-500 font-main placeholder:capitalize "
+            className="w-full h-[70px] -mb-4 text-gray-800  rounded-[5px] px-5  outline-none text-[40px] font-[900] placeholder:text-[40px] placeholder:font-[900] placeholder:text-gray-800 font-main placeholder:capitalize "
           />
         </div>
-        <div className="" ref={editorRef}>
+        <div className="self-start max-w-5xl" ref={editorRef}>
           <EditorJs
             placeholder="Start Write Your Blog"
             tools={EDITOR_JS_TOOLS}
             editorInstance={(instance) => {
               editordata = instance;
             }}
-            className="w-full pb-10 pl-6"
+            className=""
           />
         </div>
         <div className="flex items-start justify-start w-full gap-6">
           <button
-            className="px-5 py-2 bg-gray-800 tracking-wider text-white font-main rounded-[5px]"
+            className="px-5 py-2 ml-3 bg-gray-800 tracking-wider text-white font-main rounded-[5px]"
             onClick={handleSubmit}
           >
             Submit Blog

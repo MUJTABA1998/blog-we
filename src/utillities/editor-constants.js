@@ -1,29 +1,21 @@
 import List from "@editorjs/list";
-import LinkTool from "@editorjs/link";
-import Raw from "@editorjs/raw";
+
 import Header from "@editorjs/header";
 import Quote from "@editorjs/quote";
-import CheckList from "@editorjs/checklist";
-import Delimiter from "@editorjs/delimiter";
-import InlineCode from "@editorjs/inline-code";
 import Paragraph from "@editorjs/paragraph";
 import SimpleImage from "./simple-image";
-
+import Link from "../tools/Link";
+import Code from "../tools/Code";
 
 export const EDITOR_JS_TOOLS = {
   list: List,
-  delimiter: Delimiter,
-  linkTool: LinkTool,
-  check: CheckList,
-  raw: Raw,
-  inlineCode: {
-    class: InlineCode,
-  },
+  Link: Link,
+  code: Code,
   header: {
     class: Header,
     config: {
       placeholder: "Enter a header",
-      levels: [2, 3, 4],
+      levels: [1, 2, 3, 4],
       defaultLevel: 3,
     },
   },

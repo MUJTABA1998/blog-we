@@ -9,6 +9,13 @@ import {
   ImShare2,
   ImLink,
 } from "react-icons/im";
+import Paragraph from "./Paragraph";
+import Heading from "./Heading";
+import List from "./List";
+import Code from "./Code";
+import LinkTag from "./Link";
+import Quote from "./Quote";
+import Image from "./Image";
 
 const Blog = () => {
   const [blog, setBlog] = useState(null);
@@ -25,50 +32,35 @@ const Blog = () => {
   function getData(content) {
     switch (content.type) {
       case "paragraph":
-        return (
-          <p className="text-sm tracking-wider text-gray-500 md:text-lg font-main">
-            {content.data.text}
-          </p>
-        );
+        return <Paragraph content={content.data.text} />;
       case "header":
         return (
-          <h3 className=" text-[16px] md:text-[22px] text-gray-600 capitalize ">
-            {content.data.text}
-          </h3>
+          <Heading content={content.data.text} level={content.data.level} />
         );
       case "quote":
+        return <Quote content={content} />;
+      case "code":
+        let code = content.data.html.split("\n");
         return (
-          <div className="w-full h-auto py-8 px-5 text-left border-l-[5px] border-slate-100">
-            <h2 className=" text-[14px] md:text-[20px] text-gray-500">
-              <span>" {content.data.text} "</span>
-            </h2>
-            <p className="text-sm italic text-indigo-500 font-[800] mt-5">
-              written
-              {content.data.caption}
-            </p>
-          </div>
-        );
-      case "raw":
-        return (
-          <div className="w-full h-auto py-7 px-5 bg-slate-100 rounded-[3px] text-xs text-gray-600  ">
-            {content.data.html}
+          <div className="max-w-7xl  h-[200px] pt-7 px-5 bg-gray-800 rounded-[3px] text-xs text-gray-400  ">
+            {code.map((c, index) => (
+              <Code key={index} content={c} />
+            ))}
           </div>
         );
       case "image":
-        return (
-          <img
-            src={content.data.url}
-            alt={content.data.id}
-            className="object-cover rounded-[4px] drop-shadow-md"
-          />
-        );
+        return <Image content={content} />;
+      case "Link":
+        return <LinkTag link={content.data.link} />;
       case "list":
         return (
-          <ul className="ml-5 list-disc">
+          <ul
+            className={`ml-10 ${
+              content.data.style === "unordered" ? "list-disc" : "list-decimal"
+            }`}
+          >
             {content.data.items.map((item, index) => (
-              <li key={index} className="text-xs text-gray-500 md:text-sm">
-                {item}
-              </li>
+              <List item={item} key={index} />
             ))}
           </ul>
         );
@@ -78,7 +70,7 @@ const Blog = () => {
   }
 
   return (
-    <div className="main-container">
+    <div className="flex items-center justify-center max-w-5xl px-5 py-10 mx-auto md:px-0">
       {blog !== null ? (
         <div className="flex flex-col items-start justify-start gap-5">
           <div className="flex flex-wrap items-center justify-between w-full gap-6">
@@ -103,29 +95,29 @@ const Blog = () => {
               </div>
             </div>
             <div className="flex items-start justify-start gap-4 ml-1 sm:ml-0">
-              <Link to="/" className="text-gray-400">
+              <Link to="/" className="text-gray-700">
                 <ImTwitter />
               </Link>
-              <Link to="/" className="text-gray-400">
+              <Link to="/" className="text-gray-700">
                 <ImFacebook2 />
               </Link>
-              <Link to="/" className="text-gray-400">
+              <Link to="/" className="text-gray-700">
                 <ImLinkedin />
               </Link>
-              <Link to="/" className="text-gray-400">
+              <Link to="/" className="text-gray-700">
                 <ImLink />
               </Link>
-              <Link to="/" className="ml-3 text-gray-400">
+              <Link to="/" className="ml-3 text-indigo-500">
                 <ImShare2 />
               </Link>
             </div>
           </div>
           <div className="self-start">
-            <h1 className="text-xl md:text-4xl text-gray-700 capitalize font-[900] mt-5">
+            <h1 className="text-[25px] md:text-[40px] text-gray-800 capitalize font-[900] mt-5 -mb-3">
               {blog.title}
             </h1>
           </div>
-          <div className="flex flex-col items-start justify-start gap-3 mt-3">
+          <div className="flex flex-col items-start justify-start gap-2 mt-3 mb-5">
             {blog.content.blocks.map((bl, index) => (
               <div key={index} className="w-full h-auto">
                 {getData(bl)}
